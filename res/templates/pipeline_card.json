@@ -1,0 +1,88 @@
+{
+    "msg_type": "interactive",
+    "card": {
+        "config": {
+            "wide_screen_mode": true
+        },
+        "header": {
+            "title": {
+                "tag": "plain_text",
+                "content": "{{ .BuildStatus }} {{ .ProjectName }}"
+            },
+            "template": "{{ .TitleColor }}"
+        },
+        "elements": [
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "plain_text",
+                    "content": "{{ .CommitMessage }}"
+                }
+            },
+            {
+                "tag": "div",
+                "fields": [
+                    {
+                        "is_short": true,
+                        "text": {
+                            "tag": "lark_md",
+                            "content": "**提交者:**\n{{ .UserName }}"
+                        }
+                    }                ]            
+            },
+            {
+                "tag": "div",
+                "fields": [
+                    {
+                        "is_short": true,
+                        "text": {
+                            "tag": "lark_md",
+                            "content": "**Commit:**\n{{ .CommitId }}"
+                        }
+                    },
+                    {
+                        "is_short": true,
+                        "text": {
+                            "tag": "lark_md",
+                            "content": "**Ref:**\n{{ .CommitRef }}"
+                        }
+                    }
+                ]
+            },
+            {
+                "tag": "div",
+                "fields": [
+                    {
+                        "is_short": true,
+                        "text": {
+                            "tag": "lark_md",
+                            "content": "**提交时间:**\n{{ .CommitTime }}"
+                        }
+                    }{{ if .Success }},
+                    {
+                        "is_short": true,
+                        "text": {
+                            "tag": "lark_md",
+                            "content": "**持续时间:**\n{{ .Duration }}"
+                        }
+                    }{{ end }}
+                ]
+            },
+            {
+                "actions": [
+                    {
+                        "tag": "button",
+                        "text": {
+                            "content": "查看",
+                            "tag": "lark_md"
+                        },
+                        "url": "{{ .CommitUrl }}",
+                        "type": "default",
+                        "value": {}
+                    }
+                ],
+                "tag": "action"
+            }
+        ]
+    }
+}

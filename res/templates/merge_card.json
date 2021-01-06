@@ -1,0 +1,43 @@
+{
+    "msg_type": "interactive",
+    "card": {
+        "config": {
+            "wide_screen_mode": true
+        },
+        "header": {
+            "title": {
+                "tag": "plain_text",
+                "content": "{{ .UserName }} merge the merge request from branch {{ .SourceBranch }} to {{ .TargetBranch }}"
+            },
+            "template": "{{ .TitleColor }}"
+        },
+        "elements": [
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "lark_md",
+                    "content": "[{{.Title}}]($url)",
+                    "href": {
+                        "url": {
+                            "url": "{{.Url}}"
+                        }
+                    }
+                }
+            },
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "plain_text",
+                    "content": "Status: {{.Status}}"
+                }
+            },
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "plain_text",
+                    "content": "Repository: {{.ProjectName}}"
+                }
+            }
+        ]
+    }
+}

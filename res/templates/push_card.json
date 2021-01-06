@@ -1,0 +1,32 @@
+{
+    "msg_type": "interactive",
+    "card": {
+        "config": {
+            "wide_screen_mode": true
+        },
+        "header": {
+            "title": {
+                "tag": "plain_text",
+                "content": "{{ .UserName }} pushed to {{ .Ref }} as repository {{ .ProjectName }}"
+            },
+            "template": "{{ .TitleColor }}"
+        },
+        "elements": [
+            {{$commitsLastIndex := .CommitsLastIndex -}}
+            {{- range $index, $value := .Commits}}
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "lark_md",
+                    "content": "[{{$value.Id}}]($url): {{$value.Title}}",
+                    "href": {
+                        "url": {
+                            "url": "{{$value.Url}}"
+                        }
+                    }
+                }
+            }{{if lt $index $commitsLastIndex}},{{end}}
+            {{- end}}
+        ]
+    }
+}
